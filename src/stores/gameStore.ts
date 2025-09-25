@@ -32,6 +32,7 @@ const learningStateConfigs: Record<LearningState, LearningStateConfig> = {
     id: 'focused',
     name: '专注',
     description: '全力以赴，效率大幅提升但更加疲劳。',
+    canBeChoice: true,
     requirements: [
       { type: 'attribute', target: 'energy', comparator: 'gte', value: 60 },
       { type: 'attribute', target: 'learningMomentum', comparator: 'gte', value: 40 },
@@ -48,6 +49,7 @@ const learningStateConfigs: Record<LearningState, LearningStateConfig> = {
     id: 'normal',
     name: '平常',
     description: '保持节奏，兼顾效率与状态。',
+    canBeChoice: true,
     modifiers: [],
     studyEfficiencyMultiplier: 1,
     energyCostMultiplier: 1,
@@ -57,6 +59,7 @@ const learningStateConfigs: Record<LearningState, LearningStateConfig> = {
     id: 'slacking',
     name: '摸鱼',
     description: '刻意放松，维持体力但效率下降。',
+    canBeChoice: true,
     requirements: [
       { type: 'attribute', target: 'energy', comparator: 'lte', value: 45 },
       { type: 'attribute', target: 'learningMomentum', comparator: 'lte', value: 30 },
@@ -72,6 +75,7 @@ const learningStateConfigs: Record<LearningState, LearningStateConfig> = {
     id: 'breakdown',
     name: '崩溃',
     description: '精神濒临崩溃，需要紧急恢复。',
+    canBeChoice: false,
     modifiers: [
       { target: 'mood', type: 'add', value: -10, clamp: { min: -100, max: 100 } },
       { target: 'stress', type: 'add', value: 8, clamp: { min: 0, max: 100 } },
@@ -84,6 +88,7 @@ const learningStateConfigs: Record<LearningState, LearningStateConfig> = {
     id: 'flow',
     name: '心流',
     description: '身心合一，持续高效输出。',
+    canBeChoice: false,
     modifiers: [
       { target: 'learningMomentum', type: 'add', value: 4, clamp: { min: 0, max: 100 } },
       { target: 'stress', type: 'add', value: -6, clamp: { min: 0, max: 100 } },
@@ -96,6 +101,7 @@ const learningStateConfigs: Record<LearningState, LearningStateConfig> = {
     id: 'overexcited',
     name: '躁动',
     description: '兴奋过度，难以集中。',
+    canBeChoice: false,
     modifiers: [
       { target: 'mood', type: 'add', value: 5, clamp: { min: -100, max: 100 } },
       { target: 'energy', type: 'add', value: -4, clamp: { min: 0, max: 100 } },

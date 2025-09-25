@@ -81,7 +81,7 @@ const stateOptions = computed(() => Object.values(learningStates.value ?? {}).ma
   const result = gameStore.canSwitchLearningState(config.id);
   return {
     config,
-    disabled: !result.ok && config.id !== learningState.value,
+    disabled: (!result.ok && config.id !== learningState.value) || !config.canBeChoice,
   };
 }));
 

@@ -34,6 +34,7 @@ export interface LearningStateConfig {
   id: LearningState;
   name: string;
   description: string;
+  canBeChoice?: boolean; // 是否可以作为选项出现
   requirements?: ActionRequirement[];
   modifiers: AttributeModifier[];
   studyEfficiencyMultiplier?: number;
