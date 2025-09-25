@@ -1,0 +1,21 @@
+[
+  {
+    "id": "daily-chinese-workbook",
+    "name": "语文学案",
+    "type": "daily",
+    "subject": "chinese",
+    "workload": 100,
+    "progress": 0,
+    "priority": "required"
+  },
+  {
+    "id": "timed-accumulation-book",
+    "name": "积累本整理",
+    "type": "timed",
+    "subject": "chinese",
+    "workload": 120,
+    "progress": 0,
+    "deadline": 3,
+    "priority": "required"
+  }
+]
