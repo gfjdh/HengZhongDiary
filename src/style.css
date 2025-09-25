@@ -23,6 +23,22 @@ body {
   color: inherit;
 }
 
+.view-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.view-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.view-header p {
+  margin: 0.35rem 0 0;
+  opacity: 0.75;
+}
+
 #app {
   width: 100%;
   max-width: 1280px;

@@ -1,13 +1,22 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
-import StatusPanel from './components/StatusPanel/StatusPanel.vue';
-import ActionPanel from './components/ActionPanel/ActionPanel.vue';
-import TimePanel from './components/TimePanel/TimePanel.vue';
-import TaskPanel from './components/TaskPanel/TaskPanel.vue';
+import { RouterLink, RouterView, useRoute } from 'vue-router';
 import { useGameStore } from './stores/gameStore';
 
 const gameStore = useGameStore();
 const { version } = storeToRefs(gameStore);
+const route = useRoute();
+
+const navItems = [
+  { label: '概览', to: '/' },
+  { label: '状态', to: '/status' },
+  { label: '行动', to: '/actions' },
+  { label: '时间', to: '/time' },
+  { label: '任务', to: '/tasks' },
+];
+
+const activePath = computed(() => route.path);
 
 function handleReset() {
   if (window.confirm('确认要重置当前进度吗？')) {
@@ -29,15 +38,20 @@ function handleReset() {
       </div>
     </header>
 
+    <nav class="app-nav" aria-label="主导航">
+      <RouterLink
+        v-for="item in navItems"
+        :key="item.to"
+        :to="item.to"
+        class="nav-link"
+        :class="{ active: activePath === item.to }"
+      >
+        {{ item.label }}
+      </RouterLink>
+    </nav>
+
     <main class="app-main">
-      <section class="column column-left">
-        <StatusPanel />
-        <TimePanel />
-      </section>
-      <section class="column column-right">
-        <ActionPanel />
-        <TaskPanel />
-      </section>
+      <RouterView />
     </main>
   </div>
 </template>
@@ -47,9 +61,8 @@ function handleReset() {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   min-height: 100vh;
-  padding: 1.5rem 2rem 2rem;
+  padding: 1.5rem 2rem 2.5rem;
   box-sizing: border-box;
   gap: 1.5rem;
 }
@@ -100,17 +113,33 @@ function handleReset() {
   color: #646cff;
 }
 
-.app-main {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  align-items: flex-start;
+.app-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link.active {
+  border-color: rgba(100, 108, 255, 0.45);
+  background: rgba(100, 108, 255, 0.18);
+  color: #cbd5ff;
+}
+
+.app-main {
+  flex: 1 1 auto;
 }
 
 @media (max-width: 1024px) {
@@ -118,8 +147,8 @@ function handleReset() {
     padding: 1rem;
   }
 
-  .app-main {
-    grid-template-columns: 1fr;
+  .app-nav {
+    gap: 0.5rem;
   }
 }
 </style>
