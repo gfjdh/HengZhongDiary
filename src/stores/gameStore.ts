@@ -15,14 +15,14 @@ import {
   getCurrentDayTemplate,
   getTimeSlotDefinition,
 } from '../systems/time/TimeSystem';
-import { getActionDefinition, listActionDefinitions } from '../systems/action';
-import { addTasks, expireTimedTasks, tickTimedTasks, updateTaskProgress } from '../systems/task';
+import { getActionDefinition, listActionDefinitions } from '../systems/action/action';
+import { addTasks, expireTimedTasks, tickTimedTasks, updateTaskProgress } from '../systems/task/task';
 import { applyTemporaryEffects, reduceTemporaryEffects } from '../systems/attribute/AttributeSystem';
 import { applyEventOutcome, evaluateEvents, resolveEventEffects } from '../systems/event/EventSystem';
 import { baseEvents } from '../data/events/baseEvents';
 import { cloneTask, createInitialTasks, dailyTaskTemplates } from '../data/tasks/baseTasks';
-import { sampleTeachers } from '../systems/teacher';
-import { sampleClassmates } from '../systems/classmate';
+import { sampleTeachers } from '../systems/teacher/teacher';
+import { sampleClassmates } from '../systems/classmate/classmate';
 
 const BASE_VERSION = '0.1.0';
 const NOTIFICATION_LIMIT = 25;
